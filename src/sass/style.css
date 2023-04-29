@@ -1,3 +1,59 @@
+html {
+  scroll-behavior: smooth;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
 
+.page {
+  font-size: 1.6rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #545454;
+}
+
+.keyboard__button {
+  text-align: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.button__content {
+  text-align: center;
+}
+
+.button__additional-content {
+  position: relative;
+  font-size: 1rem;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 20px 20px 0 20px;
+}
+
+.textarea {
+  height: 30vh;
+  margin: 20px 20px 0 20px;
+}
+
+.keyboard__discription {
+  display: flex;
+}
+
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
 
 /*# sourceMappingURL=style.css.map */
