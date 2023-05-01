@@ -1,15 +1,34 @@
 .keyboard__button {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 2rem;
+  background: #86a1bf;
+  transition: 0.3s;
+    &:hover {
+      cursor: pointer;
+      background: #8893a0;
+    }
 }
 
-.button__content {
+.keyboard__button_normal {
+  width: 4rem;
+  height: 4rem;
   text-align: center;
+}
+
+
+.button__content {
+  
+  text-align: center;
+  align-self: center;
 }
 
 .button__additional-content {
-  position: relative;
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
   font-size: 1rem;
 }
 
