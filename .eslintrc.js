@@ -3,11 +3,15 @@ module.exports = {
 
   env: {
     browser: 'true',
-    es6: 'true',
+    es2021: 'true',
     node: 'true',
   },
 
+  parserOptions: {
+    sourceType: 'script',
+  },
+
   rules: {
-    'import/extensions': 'off',
+    'import/extensions': 0,
   },
 };

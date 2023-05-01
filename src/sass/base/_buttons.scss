@@ -6,11 +6,15 @@
   font-size: 1.8rem;
   background: #86a1bf;
   border-radius: 0.3rem;
-  transition: 0.3s;
-    &:hover {
-      cursor: pointer;
-      background: #8893a0;
-    }
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+    background: #8893a0;
+  }
+  &_active {
+    border-radius: 2.25rem;
+    background: rgb(114, 208, 14)!important;
+  }
 }
 
 .keyboard__button_normal {
