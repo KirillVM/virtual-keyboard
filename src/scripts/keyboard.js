@@ -1,6 +1,6 @@
 class Keyboard {
-  constructor() {
-    this.buttonNames = null;
+  constructor(buttonNames) {
+    this.buttonNames = buttonNames;
     this.keyboardContainer = document.createElement('div');
     this.keyboardWrapper = document.createElement('div');
     this.keyboardBody = document.createElement('div');
@@ -24,13 +24,36 @@ class Keyboard {
 
   createKeyboardBody() {
     this.keyboardBody.classList.add('keyboard');
-    for (let i = 0; i < this.buttonsInColumn; i += 1) {
-      for (let j = 0; j < this.buttonsInRow; j += 1) {
-        let button = new Button('normal', '1', '!');
-        this.keyboardBody.append(button.createKey());
-      }
-    }
+    let button = NaN;
+    Object.keys(this.buttonNames).forEach((element) => {
+      switch (element) {
+        case 'tab':
+        case 'del':
+          button = new Button('semi-wide', this.buttonNames[element], '');
+          break;
 
+        case 'enter':
+        case 'shiftRight':
+          button = new Button('wide', this.buttonNames[element], '');
+          break;
+
+        case 'backspace':
+        case 'capslock':
+        case 'shiftLeft':
+          button = new Button('large', this.buttonNames[element], '');
+          break;
+
+        case 'space':
+          button = new Button('space', this.buttonNames[element], '');
+          break;
+
+        default:
+          button = new Button('normal', this.buttonNames[element], '');
+          break;
+      }
+      this.keyboardBody.append(button.createKey());
+      console.log(element);
+    });
     return this.keyboardBody;
   }
 
@@ -66,7 +89,7 @@ class Keyboard {
   }
 }
 
-const myKeyboard = new Keyboard();
+const myKeyboard = new Keyboard(buttonNames);
 document.body.append(myKeyboard.createKeyboard());
 
 // const buttonsNameRu = { {name: 'ё', type: 'noramal'}, }

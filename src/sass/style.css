@@ -25,9 +25,9 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   background: #86a1bf;
-  border-radius: 10%;
+  border-radius: 0.3rem;
   transition: 0.3s;
 }
 .keyboard__button:hover {
@@ -38,7 +38,26 @@ h1 {
 .keyboard__button_normal {
   width: 4.5rem;
   height: 4.5rem;
-  text-align: center;
+}
+
+.keyboard__button_semi-wide {
+  width: 6rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_wide {
+  width: 9.6rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_large {
+  width: 11.25rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_space {
+  width: 37.5rem;
+  height: 4.5rem;
 }
 
 .button__content {
@@ -75,7 +94,7 @@ h1 {
 }
 
 .keyboard {
-  width: 76.5rem;
+  width: 78.75rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
