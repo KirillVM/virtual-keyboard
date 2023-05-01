@@ -48,10 +48,9 @@
   align-self: center;
 }
 
-.button__additional-content {
-  width: 80%;
-  display: flex;
-  justify-content: flex-start;
-  font-size: 1rem;
+.button__content_disabled {
+  position: absolute;
+  bottom: -1000vh;
+  display: none;
 }
 

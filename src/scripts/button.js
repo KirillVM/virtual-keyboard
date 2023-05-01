@@ -3,7 +3,7 @@ class Button {
   constructor(btnType, btnName, btnEventName, shiftSymbol = null) {
     this.btnConatiner = 0;
     this.btnType = btnType;
-    this.btnName = btnName;
+    [this.btnName, this.btnNameShift] = btnName;
     this.btnEventName = btnEventName;
     this.shiftSymbol = shiftSymbol;
   }
@@ -14,16 +14,15 @@ class Button {
     buttonContainer.setAttribute('data-type', `${this.btnEventName}`);
 
     const buttonContent = document.createElement('span');
-    buttonContent.classList.add('button__content');
+    buttonContent.classList.add('button__content', 'button__content_active');
     buttonContent.innerHTML = this.btnName;
     buttonContainer.append(buttonContent);
 
-    if (this.shiftSymbol) {
-      const buttonContentAdditional = document.createElement('span');
-      buttonContentAdditional.classList.add('button__additional-content');
-      buttonContentAdditional.innerHTML = this.shiftSymbol;
-      buttonContainer.prepend(buttonContentAdditional);
-    }
+    const buttonContentAdditional = document.createElement('span');
+    buttonContentAdditional.classList.add('button__content', 'button__content_disabled');
+    buttonContentAdditional.innerHTML = this.btnNameShift;
+    buttonContainer.prepend(buttonContentAdditional);
+
     return buttonContainer;
   }
 }

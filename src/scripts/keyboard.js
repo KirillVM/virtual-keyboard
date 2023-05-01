@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 class Keyboard {
-  constructor(buttonNames) {
-    this.buttonNames = buttonNames;
+  constructor(buttonNamesRu, buttonNamesEn) {
+    this.buttonNamesRu = buttonNamesRu;
+    this.buttonNamesEn = buttonNamesEn;
     this.keyboardContainer = document.createElement('div');
     this.keyboardWrapper = document.createElement('div');
-    this.keyboardBody = document.createElement('div');
+    this.keyboardBodyRu = document.createElement('div');
+    this.keyboardBodyEn = document.createElement('div');
     this.textareaContainer = document.createElement('div');
     this.keyboardDiscriptionContainer = document.createElement('div');
     this.buttonsInRow = 15;
@@ -17,49 +19,57 @@ class Keyboard {
     this.keyboardWrapper.classList.add('keyboard__wrapper');
 
     this.keyboardContainer.append(this.createTextarea());
-    this.keyboardWrapper.append(this.createKeyboardBody());
+    this.keyboardWrapper
+      .append(Keyboard.createKeyboardBody(this.buttonNamesRu, this.keyboardBodyRu, false));
+    this.keyboardWrapper
+      .append(Keyboard.createKeyboardBody(this.buttonNamesEn, this.keyboardBodyEn, true));
     this.keyboardContainer.append(this.keyboardWrapper);
     this.keyboardContainer.append(this.createDiscription());
     return this.keyboardContainer;
   }
 
-  createKeyboardBody() {
-    this.keyboardBody.classList.add('keyboard');
+  static createKeyboardBody(buttonNames, keyboardBody, hidden = false) {
+    keyboardBody.classList.add('keyboard');
+    if (hidden) {
+      keyboardBody.classList.add('keyboard_hidden');
+    } else {
+      keyboardBody.classList.add('keyboard_active');
+    }
     let button = NaN;
-    Object.keys(this.buttonNames).forEach((element) => {
+    Object.keys(buttonNames).forEach((element) => {
       switch (element) {
         case 'Tab':
         case 'Delete':
           // eslint-disable-next-line no-undef
-          button = new Button('semi-wide', this.buttonNames[element], element, '');
+          button = new Button('semi-wide', buttonNames[element], element, '');
           break;
 
         case 'Enter':
         case 'ShiftRight':
           // eslint-disable-next-line no-undef
-          button = new Button('wide', this.buttonNames[element], element, '');
+          button = new Button('wide', buttonNames[element], element, '');
           break;
 
         case 'Backspace':
         case 'CapsLock':
         case 'ShiftLeft':
           // eslint-disable-next-line no-undef
-          button = new Button('large', this.buttonNames[element], element, '');
+          button = new Button('large', buttonNames[element], element, '');
           break;
 
         case 'Space':
           // eslint-disable-next-line no-undef
-          button = new Button('space', this.buttonNames[element], element, '');
+          button = new Button('space', buttonNames[element], element, '');
           break;
 
         default:
           // eslint-disable-next-line no-undef
-          button = new Button('normal', this.buttonNames[element], element, '');
+          button = new Button('normal', buttonNames[element], element, '');
           break;
       }
-      this.keyboardBody.append(button.createKey());
+      keyboardBody.append(button.createKey());
     });
-    return this.keyboardBody;
+    return keyboardBody;
   }
 
   createDiscription() {
@@ -99,7 +109,7 @@ class Keyboard {
   }
 }
 // eslint-disable-next-line no-undef
-const myKeyboard = new Keyboard(buttonNames);
+const myKeyboard = new Keyboard(buttonNamesRu, buttonNamesEn);
 document.body.append(myKeyboard.createKeyboard());
 
 // const buttonsNameRu = { {name: 'ё', type: 'noramal'}, }

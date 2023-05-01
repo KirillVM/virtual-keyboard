@@ -69,11 +69,10 @@ h1 {
   align-self: center;
 }
 
-.button__additional-content {
-  width: 80%;
-  display: flex;
-  justify-content: flex-start;
-  font-size: 1rem;
+.button__content_disabled {
+  position: absolute;
+  bottom: -1000vh;
+  display: none;
 }
 
 .wrapper {
@@ -104,6 +103,11 @@ h1 {
   justify-content: space-between;
   gap: 0.5rem 0.5rem;
   margin: 0.5rem;
+}
+.keyboard_hidden {
+  position: absolute;
+  right: -100vh;
+  display: none;
 }
 
 .textarea__container {
