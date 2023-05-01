@@ -1,6 +1,7 @@
 const insertInTextarea = (event) => {
   console.log(event.target);
   const textArea = document.querySelector('.textarea__input');
+
   if (event.target.classList.contains('keyboard__button')) {
     textArea.innerHTML += event.target.querySelector('.button__content').innerHTML;
   } else if (event.target.classList.contains('button__additional-content')) {

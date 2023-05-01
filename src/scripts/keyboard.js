@@ -2,6 +2,7 @@ class Keyboard {
   constructor() {
     this.buttonNames = null;
     this.keyboardContainer = document.createElement('div');
+    this.keyboardWrapper = document.createElement('div');
     this.keyboardBody = document.createElement('div');
     this.textareaContainer = document.createElement('div');
     this.keyboardDiscriptionContainer = document.createElement('div');
@@ -12,8 +13,11 @@ class Keyboard {
 
   createKeyboard() {
     this.keyboardContainer.classList.add('keyboard__container');
+    this.keyboardWrapper.classList.add('keyboard__wrapper');
+
     this.keyboardContainer.append(this.createTextarea());
-    this.keyboardContainer.append(this.createKeyboardBody());
+    this.keyboardWrapper.append(this.createKeyboardBody());
+    this.keyboardContainer.append(this.keyboardWrapper);
     this.keyboardContainer.append(this.createDiscription());
     return this.keyboardContainer;
   }

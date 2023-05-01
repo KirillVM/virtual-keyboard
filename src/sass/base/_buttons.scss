@@ -5,6 +5,7 @@
   align-items: center;
   font-size: 2rem;
   background: #86a1bf;
+  border-radius: 10%;
   transition: 0.3s;
     &:hover {
       cursor: pointer;
@@ -13,8 +14,8 @@
 }
 
 .keyboard__button_normal {
-  width: 4rem;
-  height: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
   text-align: center;
 }
 

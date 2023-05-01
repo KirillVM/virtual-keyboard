@@ -27,6 +27,7 @@ h1 {
   align-items: center;
   font-size: 2rem;
   background: #86a1bf;
+  border-radius: 10%;
   transition: 0.3s;
 }
 .keyboard__button:hover {
@@ -35,8 +36,8 @@ h1 {
 }
 
 .keyboard__button_normal {
-  width: 4rem;
-  height: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
   text-align: center;
 }
 
@@ -57,6 +58,12 @@ h1 {
   margin: 0 auto;
 }
 
+.keyboard__wrapper {
+  border: 0.1rem solid #070707;
+  border-radius: 0.5rem;
+  background: #2d7a5e;
+}
+
 .keyboard__container {
   display: flex;
   flex-direction: column;
@@ -68,16 +75,17 @@ h1 {
 }
 
 .keyboard {
-  max-width: 61.5rem;
+  width: 76.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0.3rem 0.1rem;
+  gap: 0.5rem 0.5rem;
+  margin: 0.5rem;
 }
 
 .textarea__container {
   width: 100%;
-  height: 30vh;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,8 +100,8 @@ h1 {
 }
 
 .textarea__input {
-  height: 20vh;
-  width: 80%;
+  height: 30vh;
+  width: 60%;
   letter-spacing: normal;
   font-size: 3rem;
   border: 1px solid #2d7a5e;
