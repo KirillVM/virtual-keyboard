@@ -17,6 +17,7 @@ class Keyboard {
   createKeyboard() {
     this.keyboardContainer.classList.add('keyboard__container');
     this.keyboardWrapper.classList.add('keyboard__wrapper');
+    this.keyboardWrapper.setAttribute('onmousedown', 'return false');
 
     this.keyboardContainer.append(this.createTextarea());
     this.keyboardWrapper

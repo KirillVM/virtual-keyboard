@@ -31,8 +31,8 @@ const insertInTextarea = (event) => {
       position = textArea.selectionStart;
       if (position !== 0) {
         textArea.value = textArea.value.slice(0, position - 1) + textArea.value.slice(position);
-      }
-      if (textArea.value !== 0) {
+        position -= 1;
+      } else if (textArea.value !== 0) {
         textArea.value = textArea.value.slice(0, textArea.value.length - 1);
       }
       break;
@@ -43,10 +43,12 @@ const insertInTextarea = (event) => {
         buttonsContent[i].classList.toggle('button__content_disabled');
         buttonsContent[i].classList.toggle('button__content_active');
       }
+
       if (event.target.classList.contains('button__content')) {
         event.target.parentNode.classList.toggle('keyboard__button_active');
+      } else {
+        event.target.classList.toggle('keyboard__button_active');
       }
-      event.target.classList.toggle('keyboard__button_active');
       break;
     }
 
@@ -74,11 +76,14 @@ const buttonClickEventHandler = () => {
 
 buttonClickEventHandler();
 
-// activate eventHandle
+// activateButton  eventHandler
+let eventContainer = null;
 const activateButton = (event) => {
   if (event.target.classList.contains('keyboard__button')) {
+    eventContainer = event.target;
     event.target.classList.toggle('keyboard__button_active');
   } else if (event.target.classList.contains('button__content')) {
+    eventContainer = event.target.parentNode;
     event.target.parentNode.classList.toggle('keyboard__button_active');
   }
 };
@@ -88,9 +93,22 @@ const buttonActivateOnClickEventHandler = () => {
   keyboard.addEventListener('mousedown', activateButton);
 };
 
+// disactivateButton  eventHandler
+const disactivateButton = () => {
+  if (eventContainer) {
+    eventContainer.classList.toggle('keyboard__button_active');
+  }
+  eventContainer = null;
+  // if (event.target.classList.contains('keyboard__button')) {
+  //   event.target.classList.toggle('keyboard__button_active');
+  // } else if (event.target.classList.contains('button__content')) {
+  //   event.target.parentNode.classList.toggle('keyboard__button_active');
+  // }
+};
+
 const buttonDisactivateOnClickEventHandler = () => {
   const keyboard = document.querySelector('.page');
-  keyboard.addEventListener('mouseup', activateButton);
+  keyboard.addEventListener('mouseup', disactivateButton);
 };
 
 buttonClickEventHandler();
@@ -98,19 +116,43 @@ buttonActivateOnClickEventHandler();
 buttonDisactivateOnClickEventHandler();
 
 // keyup and keydown eventHandler
+
+const keyUpAndDownContainer = {};
+
+const changeLanguege = () => {
+  if (keyUpAndDownContainer.ShiftLeft && keyUpAndDownContainer.ControlLeft) {
+    const keyboards = document.querySelectorAll('.keyboard');
+    for (let i = 0; i < 2; i += 1) {
+      keyboards[i].classList.toggle('keyboard_active');
+      keyboards[i].classList.toggle('keyboard_hidden');
+    }
+  }
+};
+
 document.addEventListener('keydown', (event) => {
+  event.preventDefault();
   const button = document.querySelector(`[data-type=${event.code}]`);
-  if (!button.classList.contains('keyboard__button_active')) {
-    button.classList.add('keyboard__button_active');
+  keyUpAndDownContainer[event.code] = true;
+  changeLanguege();
+  if (button && !button.classList.contains('keyboard__button_active')) { // NEED REFACTOR
+    if (event.code !== 'CapsLock') {
+      button.classList.add('keyboard__button_active');
+    }
+    const myEvent = { target: button };
+    insertInTextarea(myEvent);
   }
 });
 
 document.addEventListener('keyup', (event) => {
+  event.preventDefault();
+  keyUpAndDownContainer[event.code] = false;
   const button = document.querySelector(`[data-type=${event.code}]`);
-  button.classList.toggle('keyboard__button_active');
+  if (event.code !== 'CapsLock' && button && button.classList.contains('keyboard__button_active')) {
+    button.classList.toggle('keyboard__button_active');
+  }
 });
 
-// shift alt+shift eventHandler
+// shift eventHandler
 const shiftButtonMouseDownEventHandler = () => {
   const shiftButton = document.querySelector('[data-type="ShiftLeft"]');
   shiftButton.addEventListener('mousedown', () => {
@@ -119,10 +161,6 @@ const shiftButtonMouseDownEventHandler = () => {
       buttonsContent[i].classList.toggle('button__content_disabled');
       buttonsContent[i].classList.toggle('button__content_active');
     }
-    // const altButton = document.querySelector('[data-type="AltLeft"]');
-    // console.log(altButton);
-    // altButton.addEventListener('click', () => {
-    // });
   });
 };
 
@@ -134,36 +172,8 @@ const shiftButtonMouseUpEventHandler = () => {
       buttonsContent[i].classList.toggle('button__content_disabled');
       buttonsContent[i].classList.toggle('button__content_active');
     }
-    // const altButton = document.querySelector('[data-type="AltLeft"]');
-    // console.log(altButton);
-    // altButton.addEventListener('click', () => {
-    // });
   });
 };
 
 shiftButtonMouseDownEventHandler();
 shiftButtonMouseUpEventHandler();
-
-// document.addEventListener('keyup', (event) => {
-//   const button = document.querySelector(`[data-type = ${event.code}]`);
-//   button.classList.toggle('keyboard__button_active');
-// });
-
-// CapsLock eventHandler
-// const activateCapsButton = (e) => {
-//   const buttonsContent = document.querySelectorAll('.button__content');
-//   for (let i = 0; i < buttonsContent.length; i += 1) {
-//     buttonsContent[i].classList.toggle('button__content_disabled');
-//   }
-//   if (e.target.classList.contains('button__content')) {
-//     e.target.parentNode.classList.toggle('keyboard__button_active');
-//   }
-//   e.target.classList.toggle('keyboard__button_active');
-// };
-
-// const capsButtonEventHandler = () => {
-//   const capsButton = document.querySelector('[data-type="CapsLock"]');
-//   capsButton.addEventListener('click', activateCapsButton);
-// };
-
-// capsButtonEventHandler();
