@@ -1,6 +1,5 @@
 // input eventHandle
 const insertInTextarea = (event) => {
-  console.log(event);
   const textArea = document.querySelector('.textarea__input');
   let content = '';
 

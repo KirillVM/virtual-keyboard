@@ -17,7 +17,7 @@ html {
 }
 
 h1 {
-  color: #545454;
+  color: #ecd77b;
 }
 
 .keyboard__button {
@@ -26,17 +26,18 @@ h1 {
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
-  background: #86a1bf;
+  background: #000718;
+  color: #ffffff;
   border-radius: 0.3rem;
   transition: 0.2s;
 }
 .keyboard__button:hover {
   cursor: pointer;
-  background: #8893a0;
+  background: #0b2241;
 }
 .keyboard__button_active {
   border-radius: 2.25rem;
-  background: rgb(114, 208, 14) !important;
+  background: #0058cb !important;
 }
 
 .keyboard__button_normal {
@@ -81,9 +82,9 @@ h1 {
 }
 
 .keyboard__wrapper {
-  border: 0.1rem solid #070707;
+  border: 0.1rem solid #000718;
   border-radius: 0.5rem;
-  background: #2d7a5e;
+  background: #ecd77b;
 }
 
 .keyboard__container {
@@ -122,7 +123,7 @@ h1 {
   width: 100%;
   font-size: 3rem;
   font-weight: bold;
-  color: #2d7a5e;
+  color: #000718;
   text-align: center;
 }
 
@@ -131,7 +132,9 @@ h1 {
   width: 60%;
   letter-spacing: normal;
   font-size: 3rem;
-  border: 1px solid #2d7a5e;
+  color: #000718;
+  background-color: #ecd77b;
+  border: 1px solid #000718;
 }
 
 .keyboard__discription {
@@ -140,6 +143,8 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #000718;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=style.css.map */

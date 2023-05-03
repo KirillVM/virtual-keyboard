@@ -9,6 +9,7 @@ class Keyboard {
     this.keyboardBodyEn = document.createElement('div');
     this.textareaContainer = document.createElement('div');
     this.keyboardDiscriptionContainer = document.createElement('div');
+    this.keyboardLanguageIcon = document.createElement('div');
     this.language = localStorage.lang || 'ru';
   }
 
@@ -106,6 +107,10 @@ class Keyboard {
 
     return this.textareaContainer;
   }
+
+  // createLanguageIcon() {
+
+  // }
 }
 // eslint-disable-next-line no-undef
 const myKeyboard = new Keyboard(buttonNamesRu, buttonNamesEn);
