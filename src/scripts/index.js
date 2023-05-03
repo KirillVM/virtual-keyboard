@@ -1,5 +1,6 @@
 // input eventHandle
 const insertInTextarea = (event) => {
+  console.log(event);
   const textArea = document.querySelector('.textarea__input');
   let content = '';
 
@@ -43,11 +44,12 @@ const insertInTextarea = (event) => {
         buttonsContent[i].classList.toggle('button__content_disabled');
         buttonsContent[i].classList.toggle('button__content_active');
       }
-
-      if (event.target.classList.contains('button__content')) {
-        event.target.parentNode.classList.toggle('keyboard__button_active');
-      } else {
-        event.target.classList.toggle('keyboard__button_active');
+      if (event.type === 'click') {
+        if (event.target.classList.contains('button__content')) {
+          event.target.parentNode.classList.toggle('keyboard__button_active');
+        } else {
+          event.target.classList.toggle('keyboard__button_active');
+        }
       }
       break;
     }
@@ -70,8 +72,10 @@ const insertInTextarea = (event) => {
 };
 
 const buttonClickEventHandler = () => {
-  const keyboard = document.querySelector('.keyboard_active');
-  keyboard.addEventListener('click', insertInTextarea);
+  const keyboard = document.querySelectorAll('.keyboard');
+  for (let i = 0; i < 2; i += 1) {
+    keyboard[i].addEventListener('click', insertInTextarea);
+  }
 };
 
 buttonClickEventHandler();
@@ -89,8 +93,10 @@ const activateButton = (event) => {
 };
 
 const buttonActivateOnClickEventHandler = () => {
-  const keyboard = document.querySelector('.keyboard_active');
-  keyboard.addEventListener('mousedown', activateButton);
+  const keyboard = document.querySelectorAll('.keyboard');
+  for (let i = 0; i < 2; i += 1) {
+    keyboard[i].addEventListener('mousedown', activateButton);
+  }
 };
 
 // disactivateButton  eventHandler
@@ -121,23 +127,31 @@ const keyUpAndDownContainer = {};
 
 const changeLanguege = () => {
   if (keyUpAndDownContainer.ShiftLeft && keyUpAndDownContainer.ControlLeft) {
-    const keyboards = document.querySelectorAll('.keyboard');
+    const keyboardsBody = document.querySelectorAll('.keyboard');
+
+    // set localStorage language
+    if (localStorage.lang === 'ru' || !localStorage.lang) {
+      localStorage.lang = 'en';
+    } else {
+      localStorage.lang = 'ru';
+    }
+
+    // activate keyboard with another language
     for (let i = 0; i < 2; i += 1) {
-      keyboards[i].classList.toggle('keyboard_active');
-      keyboards[i].classList.toggle('keyboard_hidden');
+      keyboardsBody[i].classList.toggle('keyboard_active');
+      keyboardsBody[i].classList.toggle('keyboard_hidden');
     }
   }
 };
 
 document.addEventListener('keydown', (event) => {
   event.preventDefault();
-  const button = document.querySelector(`[data-type=${event.code}]`);
+  const keyboard = document.querySelector('.keyboard_active');
+  const button = keyboard.querySelector(`[data-type=${event.code}]`);
   keyUpAndDownContainer[event.code] = true;
   changeLanguege();
-  if (button && !button.classList.contains('keyboard__button_active')) { // NEED REFACTOR
-    if (event.code !== 'CapsLock') {
-      button.classList.add('keyboard__button_active');
-    }
+  if (button) { // NEED REFACTOR
+    button.classList.toggle('keyboard__button_active');
     const myEvent = { target: button };
     insertInTextarea(myEvent);
   }
@@ -146,7 +160,8 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
   event.preventDefault();
   keyUpAndDownContainer[event.code] = false;
-  const button = document.querySelector(`[data-type=${event.code}]`);
+  const keyboard = document.querySelector('.keyboard_active');
+  const button = keyboard.querySelector(`[data-type=${event.code}]`);
   if (event.code !== 'CapsLock' && button && button.classList.contains('keyboard__button_active')) {
     button.classList.toggle('keyboard__button_active');
   }
@@ -156,7 +171,8 @@ document.addEventListener('keyup', (event) => {
 const shiftButtonMouseDownEventHandler = () => {
   const shiftButton = document.querySelector('[data-type="ShiftLeft"]');
   shiftButton.addEventListener('mousedown', () => {
-    const buttonsContent = document.querySelectorAll('.button__content');
+    const keyboard = document.querySelector('.keyboard_active');
+    const buttonsContent = keyboard.querySelectorAll('.button__content');
     for (let i = 0; i < buttonsContent.length; i += 1) {
       buttonsContent[i].classList.toggle('button__content_disabled');
       buttonsContent[i].classList.toggle('button__content_active');
@@ -167,7 +183,8 @@ const shiftButtonMouseDownEventHandler = () => {
 const shiftButtonMouseUpEventHandler = () => {
   const shiftButton = document.querySelector('[data-type="ShiftLeft"]');
   shiftButton.addEventListener('mouseup', () => {
-    const buttonsContent = document.querySelectorAll('.button__content');
+    const keyboard = document.querySelector('.keyboard_active');
+    const buttonsContent = keyboard.querySelectorAll('.button__content');
     for (let i = 0; i < buttonsContent.length; i += 1) {
       buttonsContent[i].classList.toggle('button__content_disabled');
       buttonsContent[i].classList.toggle('button__content_active');

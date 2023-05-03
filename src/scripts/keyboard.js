@@ -9,9 +9,7 @@ class Keyboard {
     this.keyboardBodyEn = document.createElement('div');
     this.textareaContainer = document.createElement('div');
     this.keyboardDiscriptionContainer = document.createElement('div');
-    this.buttonsInRow = 15;
-    this.buttonsInColumn = 5;
-    this.language = 'ru';
+    this.language = localStorage.lang || 'ru';
   }
 
   createKeyboard() {
@@ -20,18 +18,18 @@ class Keyboard {
     this.keyboardWrapper.setAttribute('onmousedown', 'return false');
 
     this.keyboardContainer.append(this.createTextarea());
-    this.keyboardWrapper
-      .append(Keyboard.createKeyboardBody(this.buttonNamesRu, this.keyboardBodyRu, false));
-    this.keyboardWrapper
-      .append(Keyboard.createKeyboardBody(this.buttonNamesEn, this.keyboardBodyEn, true));
+    this.keyboardBodyRu.setAttribute('data-lang', 'ru');
+    this.keyboardBodyEn.setAttribute('data-lang', 'en');
+    this.keyboardWrapper.append(this.createKeyboardBody(this.buttonNamesRu, this.keyboardBodyRu));
+    this.keyboardWrapper.append(this.createKeyboardBody(this.buttonNamesEn, this.keyboardBodyEn));
     this.keyboardContainer.append(this.keyboardWrapper);
     this.keyboardContainer.append(this.createDiscription());
     return this.keyboardContainer;
   }
 
-  static createKeyboardBody(buttonNames, keyboardBody, hidden = false) {
+  createKeyboardBody(buttonNames, keyboardBody) {
     keyboardBody.classList.add('keyboard');
-    if (hidden) {
+    if (keyboardBody.dataset.lang !== this.language) {
       keyboardBody.classList.add('keyboard_hidden');
     } else {
       keyboardBody.classList.add('keyboard_active');
