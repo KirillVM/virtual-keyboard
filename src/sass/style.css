@@ -1,0 +1,145 @@
+html {
+  scroll-behavior: smooth;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  font-size: 1.6rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #545454;
+}
+
+.keyboard__button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  background: #86a1bf;
+  border-radius: 0.3rem;
+  transition: 0.2s;
+}
+.keyboard__button:hover {
+  cursor: pointer;
+  background: #8893a0;
+}
+.keyboard__button_active {
+  border-radius: 2.25rem;
+  background: rgb(114, 208, 14) !important;
+}
+
+.keyboard__button_normal {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_semi-wide {
+  width: 6rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_wide {
+  width: 9.6rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_large {
+  width: 11.25rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_space {
+  width: 37.5rem;
+  height: 4.5rem;
+}
+
+.button__content {
+  text-align: center;
+  align-self: center;
+}
+
+.button__content_disabled {
+  position: absolute;
+  bottom: -1000vh;
+  display: none;
+}
+
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.keyboard__wrapper {
+  border: 0.1rem solid #070707;
+  border-radius: 0.5rem;
+  background: #2d7a5e;
+}
+
+.keyboard__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-self: center;
+  gap: 20px;
+  margin: 20px 20px 0 20px;
+}
+
+.keyboard {
+  width: 78.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 0.5rem;
+  margin: 0.5rem;
+}
+.keyboard_hidden {
+  position: absolute;
+  right: -100vh;
+  display: none;
+}
+
+.textarea__container {
+  width: 100%;
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textarea__label {
+  width: 100%;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2d7a5e;
+  text-align: center;
+}
+
+.textarea__input {
+  height: 30vh;
+  width: 60%;
+  letter-spacing: normal;
+  font-size: 3rem;
+  border: 1px solid #2d7a5e;
+}
+
+.keyboard__discription {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=style.css.map */

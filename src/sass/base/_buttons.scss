@@ -1,0 +1,56 @@
+.keyboard__button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  background: #86a1bf;
+  border-radius: 0.3rem;
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+    background: #8893a0;
+  }
+  &_active {
+    border-radius: 2.25rem;
+    background: rgb(114, 208, 14)!important;
+  }
+}
+
+.keyboard__button_normal {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_semi-wide {
+  width: 6rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_wide {
+  width: 9.6rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_large {
+  width: 11.25rem;
+  height: 4.5rem;
+}
+
+.keyboard__button_space {
+  width: 37.5rem;
+  height: 4.5rem;
+}
+
+
+.button__content {
+  text-align: center;
+  align-self: center;
+}
+
+.button__content_disabled {
+  position: absolute;
+  bottom: -1000vh;
+  display: none;
+}
+
